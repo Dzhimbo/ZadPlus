@@ -22,5 +22,5 @@ def filter_positive_news(acc, item):
 
 result = reduce(filter_positive_news, news, [])
 
-for _, news_text in result:
-    print(news_text)
+for positivity, news_text in result:
+    print(f"{positivity} - {news_text}")
