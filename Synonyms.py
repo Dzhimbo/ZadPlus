@@ -15,10 +15,16 @@ if __name__ == '__main__':
         for line in synonyms:  # Проходим по считанным строчкам файла
             if line:  # Если строка не пустая, то добавляем в словарь ключ(слово) и значение(его синоним)
                 word = line.split('-')[0].strip().lower()
-                if word not in synonyms_dict:  # Если слова не было в словаре
-                    synonyms_dict[word] = [x.strip() for x in line.split('-')[1].strip().split(';')]
-                else:  # Если слово уже присутствует
-                    synonyms_dict[word].extend([x.strip() for x in line.split('-')[1].strip().split(';') if x])
+                synonyms = [x.strip() for x in line.split('-')[1].strip().split(';')]
+                if word not in synonyms_dict:
+                    synonyms_dict[word] = synonyms
+                else:
+                    synonyms_dict[word].extend(synonyms)
+                for synonym in synonyms:
+                    if synonym not in synonyms_dict:
+                        synonyms_dict[synonym] = [word] + [x for x in synonyms if x != synonym]
+                    else:
+                        synonyms_dict[synonym].extend([word] + [x for x in synonyms if x != synonym])
 
         if input_word.lower() in synonyms_dict:  # Если слово пользователя есть в словаре
             while True:
