@@ -51,7 +51,7 @@ window.resizable(width=True, height=False)
 # добавляем возможность изменения цвета фона и размера окна
 window.configure(bg="#258a83")
 
-label = Label(window, text="Введите имя аудиофайла с расширением:", font=("Arial Bold", 12), pady=10, bg="black",
+label = Label(window, text="Введите имя аудиофайла с расширением wav:", font=("Arial Bold", 12), pady=10, bg="black",
               fg="white")
 label.pack()
 
